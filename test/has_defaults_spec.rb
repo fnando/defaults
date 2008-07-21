@@ -4,7 +4,7 @@ require "spec_helper"
 Object.unset_class('Donut')
 
 class Donut < ActiveRecord::Base
-  has_defaults :flavor => "cream", :name => "Cream", :maker => "Dunkin Donuts"
+  has_defaults :flavor => "cream", :name => "Cream", :maker => proc { "Dunkin Donuts" }
 end
 
 describe "has_defaults" do
