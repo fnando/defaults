@@ -3,7 +3,12 @@ ENV["RAILS_ENV"] = "test"
 require File.dirname(__FILE__) + "/../../../../config/environment"
 require "spec"
 require "spec/rails"
-require "ruby-debug"
+
+begin
+  require "ruby-debug"
+rescue LoadError
+  puts "== ruby-debug is not installed"
+end
 
 ActiveRecord::Base.configurations = {"test" => {:adapter => "sqlite3", :database => ":memory:"}}
 ActiveRecord::Base.establish_connection(ActiveRecord::Base.configurations["test"])
