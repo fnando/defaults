@@ -4,4 +4,4 @@ require "has_defaults"
 # explicit defined in a class.
 class ActiveRecord::Base; def after_initialize; end; end
 
-ActiveRecord::Base.send(:include, SimplesIdeias::Acts::Defaults)
+ActiveRecord::Base.__send__(:include, SimplesIdeias::Acts::Defaults)

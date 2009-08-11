@@ -1,7 +1,7 @@
-require "spec_helper"
+require File.dirname(__FILE__) + "/spec_helper"
 
 # unset models used for testing purposes
-Object.unset_class('Donut')
+Object.unset_class("Donut")
 
 class Donut < ActiveRecord::Base
   has_defaults :flavor => "cream", :name => "Cream", :maker => proc { "Dunkin Donuts" }
