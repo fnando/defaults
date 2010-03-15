@@ -1,35 +1,11 @@
-ENV["RAILS_ENV"] = "test"
+$LOAD_PATH.unshift File.dirname(__FILE__) + "/../lib"
 
-require File.dirname(__FILE__) + "/../../../../config/environment"
+require "rubygems"
+require "active_record"
 require "spec"
-require "spec/rails"
+require File.dirname(__FILE__) + "/../init"
 
-begin
-  require "ruby-debug"
-rescue LoadError
-  puts "== ruby-debug is not installed"
-end
-
-ActiveRecord::Base.configurations = {"test" => {:adapter => "sqlite3", :database => ":memory:"}}
-ActiveRecord::Base.establish_connection(ActiveRecord::Base.configurations["test"])
-
+ActiveRecord::Base.establish_connection(:adapter => "sqlite3", :database => ":memory:")
 load File.dirname(__FILE__) + "/schema.rb"
-
-Spec::Runner.configure do |config|
-  config.use_transactional_fixtures = true
-  config.use_instantiated_fixtures  = false
-  config.fixture_path = File.dirname(__FILE__) + "/fixtures/"
-end
-
-class Object
-  def self.unset_class(*args)
-    class_eval do 
-      args.each do |klass|
-        eval(klass) rescue nil
-        remove_const(klass) if const_defined?(klass)
-      end
-    end
-  end
-end
 
 alias :doing :lambda
