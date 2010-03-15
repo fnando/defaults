@@ -6,7 +6,7 @@ Install the plugin with <tt>script/plugin install git://github.com/fnando/has_de
 
 == Usage
 
-Add the method call `has_defaults` to your model.
+Add the method call +has_defaults+ to your model.
 
   class Page < ActiveRecord::Base
     has_defaults :title => "New page", :body => "Put your text here"
