@@ -1,7 +1,10 @@
 require File.dirname(__FILE__) + "/spec_helper"
 
 class Donut < ActiveRecord::Base
-  has_defaults :flavor => "cream", :name => "Cream", :maker => proc { "Dunkin Donuts" }
+  has_defaults :flavor => "cream",
+               :name => "Cream", 
+               :maker => proc { "Dunkin Donuts" }, 
+               :class_name => proc {|donut| donut.class.name }
 end
 
 describe "has_defaults" do
@@ -14,6 +17,7 @@ describe "has_defaults" do
     @new_donut.flavor.should == "cream"
     @new_donut.name.should == "Cream"
     @new_donut.maker.should == "Dunkin Donuts"
+    @new_donut.class_name.should == "Donut"
   end
 
   it "should set defaults only if attributes are blank" do
@@ -29,7 +33,7 @@ describe "has_defaults" do
   end
 
   private
-    def create_donut(options={})
-      Donut.create({:flavor => "vanilla", :name => "Vanilla Sky", :maker => "Mr. Baker"}.merge(options))
-    end
+  def create_donut(options={})
+    Donut.create({:flavor => "vanilla", :name => "Vanilla Sky", :maker => "Mr. Baker"}.merge(options))
+  end
 end

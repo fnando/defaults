@@ -1,5 +1,5 @@
 ActiveRecord::Schema.define(:version => 0) do
   create_table :donuts do |t|
-    t.string :flavor, :name, :maker
+    t.string :flavor, :name, :maker, :class_name
   end
 end
