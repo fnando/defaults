@@ -1,14 +1,17 @@
-require File.dirname(__FILE__) + "/spec_helper"
+# encoding: utf-8
+require "spec_helper"
 
 class Donut < ActiveRecord::Base
-  has_defaults :flavor => "cream",
-               :name => "Cream", 
-               :maker => proc { "Dunkin Donuts" }, 
-               :class_name => proc {|donut| donut.class.name }
+  attr_accessor :class_name
+
+  defaults :flavor => "cream",
+           :name => "Cream",
+           :maker => proc { "Dunkin Donuts" },
+           :class_name => proc {|donut| donut.class.name }
 end
 
-describe "has_defaults" do
-  before(:each) do
+describe Defaults do
+  before do
     @donut = create_donut
     @new_donut = Donut.new
   end
@@ -34,6 +37,10 @@ describe "has_defaults" do
 
   private
   def create_donut(options={})
-    Donut.create({:flavor => "vanilla", :name => "Vanilla Sky", :maker => "Mr. Baker"}.merge(options))
+    Donut.create({
+      :flavor => "vanilla",
+      :name => "Vanilla Sky",
+      :maker => "Mr. Baker"
+    }.merge(options))
   end
 end
