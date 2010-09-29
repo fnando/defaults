@@ -16,6 +16,12 @@ describe Defaults do
     @new_donut = Donut.new
   end
 
+  it "should raise when invalid argument is provided" do
+    expect {
+      Donut.defaults nil
+    }.to raise_error(ArgumentError)
+  end
+
   it "should set defaults" do
     @new_donut.flavor.should == "cream"
     @new_donut.name.should == "Cream"
