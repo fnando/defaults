@@ -2,11 +2,11 @@
 
 == Instalation
 
-Install the plugin with <tt>script/plugin install git://github.com/fnando/has_defaults.git</tt>
+Just run <tt>gem install defaults</tt>
 
 == Usage
 
-Add the method call +has_defaults+ to your model.
+Add the method call +defaults+ to your model.
 
   class Page < ActiveRecord::Base
     defaults :title => "New page", :body => "Put your text here"
