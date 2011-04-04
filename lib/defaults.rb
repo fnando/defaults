@@ -16,27 +16,31 @@ module Defaults
 
       include InstanceMethods
 
-      self.default_options = attrs
-      after_initialize :set_default_attributes
-    end
+      self.default_options ||= {}
+      self.default_options.merge!(attrs)
 
-    def has_defaults(attrs)
-      warn "[WARNING] Using has_defaults is now deprecated. Please use defaults instead."
-      defaults(attrs)
+      after_initialize :set_default_attributes
     end
   end
 
   module InstanceMethods
     def default_for(name)
-      self.class.default_options[name.to_sym]
+      value = self.class.default_options[name.to_sym]
+      value = value.arity == 1 ? value.call(self) : value.call if value.respond_to?(:call)
+      value
     end
 
     private
     def set_default_attributes
       if new_record?
-        self.class.default_options.each do |name, value|
-          value = value.arity == 1 ? value.call(self) : value.call if value.respond_to?(:call)
-          send("#{name}=", value) if send(name).blank?
+        self.class.default_options.keys.each do |name|
+          # First, retrieve default value set through database.
+          # Will use this value in order to detect if value should be set.
+          info = self.class.columns_hash[name.to_s]
+          database_default = info ? info.default : nil
+
+          value = read_attribute(name)
+          __send__ "#{name}=", default_for(name) if value.blank? || value == database_default
         end
       end
     end
