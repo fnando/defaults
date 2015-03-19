@@ -1,0 +1,12 @@
+language: ruby
+script: bundle exec rspec
+sudo: false
+cache: bundler
+addons:
+  code_climate:
+    repo_token:
+      secure: "aViiP4wSO11Sq/7aXMeoo4ksDj3/wPs3do+cP79jSFiF/ZyBnETWOG4BQoO+UWT1IctnlEN/jrAceZZ9VTbxrtkPbJriO4X8AZDweOq4TOvrRa+6jPfuAqh5QZeSbXucrTU54DWCyPDu404bIz+9yh1vFMBtstKQF1mx4MJVXY4="
+rvm:
+- '2.0'
+- '2.1'
+- '2.2'

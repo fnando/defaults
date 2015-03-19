@@ -1,36 +1,48 @@
-= Defaults
+# Defaults
 
-== Instalation
+[![Build Status](https://travis-ci.org/fnando/defaults.svg)](https://travis-ci.org/fnando/defaults)
+[![Code Climate](https://codeclimate.com/github/fnando/defaults/badges/gpa.svg)](https://codeclimate.com/github/fnando/defaults)
+[![Test Coverage](https://codeclimate.com/github/fnando/defaults/badges/coverage.svg)](https://codeclimate.com/github/fnando/defaults)
 
-Just run <tt>gem install defaults</tt>
+## Instalation
 
-== Usage
+Just run `gem install defaults`.
 
-Add the method call +defaults+ to your model.
+## Usage
 
-  class Page < ActiveRecord::Base
-    defaults :title => "New page", :body => "Put your text here"
-  end
+Add the method call `defaults` to your model.
+
+```ruby
+class Page < ActiveRecord::Base
+  defaults title: "New page", body: "Put your text here"
+end
+```
 
 Attributes will be set only if it's a new record and the attribute is blank.
 
-Retrieve the default attribute with the +default_for+ instance method:
+Retrieve the default attribute with the `default_for` instance method:
 
-  @page.default_for(:title)
+```ruby
+@page.default_for(:title)
+```
 
 You can pass Proc as attribute:
 
-  defaults :expires_at => proc { Time.now }
+```ruby
+defaults expires_at: proc { Time.now }
+```
 
 You can override the default attributes as follow:
 
-  Page.default_options = {:title => "Here's your new page", :body => "Write your page text"}
+```ruby
+Page.default_options = {title: "Here's your new page", body: "Write your page text"}
+```
 
-== Maintainer
+## Maintainer
 
 * Nando Vieira - http://simplesideias.com.br
 
-== License
+## License
 
 (The MIT License)
 

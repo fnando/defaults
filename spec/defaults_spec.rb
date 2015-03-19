@@ -26,27 +26,27 @@ describe Defaults do
   end
 
   it "sets default values" do
-    @new_donut.flavor.should == "cream"
-    @new_donut.name.should == "Cream"
-    @new_donut.maker.should == "Dunkin Donuts"
-    @new_donut.class_name.should == "Donut"
-    @new_donut.quantity.should == 5
+    expect(@new_donut.flavor).to eq("cream")
+    expect(@new_donut.name).to eq("Cream")
+    expect(@new_donut.maker).to eq("Dunkin Donuts")
+    expect(@new_donut.class_name).to eq("Donut")
+    expect(@new_donut.quantity).to eq(5)
   end
 
   it "sets default values only when have blank attributes" do
-    @donut.flavor.should == "vanilla"
-    @donut.quantity.should == 5
+    expect(@donut.flavor).to eq("vanilla")
+    expect(@donut.quantity).to eq(5)
   end
 
   it "returns default value for an attribute" do
-    @donut.default_for(:flavor).should == "cream"
-    @donut.default_for(:maker).should == "Dunkin Donuts"
-    @donut.default_for(:class_name).should == "Donut"
-    @donut.default_for(:quantity).should == 5
+    expect(@donut.default_for(:flavor)).to eq("cream")
+    expect(@donut.default_for(:maker)).to eq("Dunkin Donuts")
+    expect(@donut.default_for(:class_name)).to eq("Donut")
+    expect(@donut.default_for(:quantity)).to eq(5)
   end
 
   it "does not set default values" do
-    Donut.first.flavor.should == "vanilla"
+    expect(Donut.first.flavor).to eq("vanilla")
   end
 
   private
