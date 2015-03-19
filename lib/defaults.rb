@@ -1,5 +1,5 @@
 module Defaults
-  autoload :Version, "defaults/version"
+  require 'defaults/version'
 
   def self.included(base)
     base.extend ClassMethods
@@ -25,23 +25,26 @@ module Defaults
 
   module InstanceMethods
     def default_for(name)
-      value = self.class.default_options[name.to_sym]
-      value = value.arity == 1 ? value.call(self) : value.call if value.respond_to?(:call)
+      if self.class.default_options.key?(name.to_sym)
+        value = self.class.default_options[name.to_sym]
+        value = value.arity == 1 ? value.call(self) : value.call if value.respond_to?(:call)
+      else
+        column_info = self.class.columns_hash[name.to_s]
+        value = column_info.type_cast_from_user(column_info.default) if column_info
+      end
+
       value
     end
 
     private
     def set_default_attributes
-      if new_record?
-        self.class.default_options.keys.each do |name|
-          # First, retrieve default value set through database.
-          # Will use this value in order to detect if value should be set.
-          info = self.class.columns_hash[name.to_s]
-          database_default = info ? info.default : nil
+      return unless new_record?
 
-          value = read_attribute(name)
-          __send__ "#{name}=", default_for(name) if value.blank? || value == database_default
-        end
+      self.class.default_options.keys.each do |name|
+        value = read_attribute(name) if changes[name]
+        value = default_for(name) if value.blank?
+
+        __send__ "#{name}=", value
       end
     end
   end

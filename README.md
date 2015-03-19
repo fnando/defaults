@@ -10,6 +10,11 @@ Just run `gem install defaults`.
 
 ## Usage
 
+Here are the rules:
+
+1. Assigned attributes have precedence over default values
+2. Default values have precedence over database defaults
+
 Add the method call `defaults` to your model.
 
 ```ruby
