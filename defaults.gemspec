@@ -9,6 +9,7 @@ Gem::Specification.new do |s|
   s.homepage    = "http://rubygems.org/gems/defaults"
   s.summary     = "Set default values for ActiveRecord attributes"
   s.description = s.summary
+  s.licenses    = ['MIT']
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
