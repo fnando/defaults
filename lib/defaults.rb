@@ -1,5 +1,5 @@
 module Defaults
-  require 'defaults/version'
+  require "defaults/version"
 
   def self.included(base)
     base.extend ClassMethods

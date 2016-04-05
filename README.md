@@ -45,7 +45,7 @@ Page.default_options = {title: "Here's your new page", body: "Write your page te
 
 ## Maintainer
 
-* Nando Vieira - http://simplesideias.com.br
+* Nando Vieira - http://nandovieira.com
 
 ## License
 
