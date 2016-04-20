@@ -1,8 +1,10 @@
 # Defaults
 
-[![Build Status](https://travis-ci.org/fnando/defaults.svg)](https://travis-ci.org/fnando/defaults)
+[![Travis-CI](https://travis-ci.org/fnando/defaults.png)](https://travis-ci.org/fnando/defaults)
 [![Code Climate](https://codeclimate.com/github/fnando/defaults/badges/gpa.svg)](https://codeclimate.com/github/fnando/defaults)
-[![Test Coverage](https://codeclimate.com/github/fnando/defaults/badges/coverage.svg)](https://codeclimate.com/github/fnando/defaults)
+[![Test Coverage](https://codeclimate.com/github/fnando/defaults/badges/coverage.svg)](https://codeclimate.com/github/fnando/defaults/coverage)
+[![Gem](https://img.shields.io/gem/v/defaults.svg)](https://rubygems.org/gems/defaults)
+[![Gem](https://img.shields.io/gem/dt/defaults.svg)](https://rubygems.org/gems/defaults)
 
 ## Instalation
 
