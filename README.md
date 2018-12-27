@@ -46,21 +46,36 @@ Retrieve the default attribute with the `default_for` instance method:
 @page.default_for(:title)
 ```
 
-You can pass Proc as attribute:
+You can pass callables (any objects that respond to `.call()` or `.call(record)`) as attribute:
 
 ```ruby
-defaults expires_at: proc { Time.now }
+class Expiration
+  def self.call
+    Time.now
+  end
+end
+
+class Checksum
+  def self.call(user)
+    Digest::SHA1.hexdigest(user.name.to_s, user.email.to_s)
+  end
+end
+
+class User < ApplicationRecord
+  defaults checksum: Checksum,
+           expires_at: -> { Time.now }
+end
 ```
 
 You can override the default attributes as follow:
 
 ```ruby
-Page.default_options = {title: "Here's your new page", body: "Write your page text"}
+Page.default_values = {title: "Here's your new page", body: "Write your page text"}
 ```
 
 ## Maintainer
 
-* Nando Vieira - http://nandovieira.com
+Nando Vieira - http://nandovieira.com
 
 ## License
 
