@@ -1,6 +1,35 @@
 module Defaults
   require "defaults/version"
 
+  def self.execute_callable(value, record)
+    callable = value.is_a?(Proc) ? value : value.method(:call)
+    callable.arity == 1 ? value.call(record) : value.call
+  end
+
+  def self.default_value_for_column(model, attribute)
+    column_info = model.columns_hash[attribute.to_s]
+    ActiveRecord::Type.lookup(column_info.type).cast(column_info.default) if column_info
+  end
+
+  def self.default_value(model, record, attribute)
+    value = model.default_values[attribute]
+    value = Defaults.execute_callable(value, record) if value.respond_to?(:call)
+    value
+  end
+
+  def self.resolve_default_value(model, record, attribute)
+    attribute = attribute.to_sym
+
+    # Check if value has been defined by `defaults`.
+    # If it is, try to resolve by checking if value is callable.
+    # Otherwise returns the default value of that column.
+    if model.default_values.key?(attribute)
+      Defaults.default_value(model, record, attribute)
+    else
+      Defaults.default_value_for_column(model, attribute)
+    end
+  end
+
   def self.included(base)
     base.extend ClassMethods
 
@@ -24,22 +53,7 @@ module Defaults
 
   module InstanceMethods
     def default_for(name)
-      # Check if value has been defined by `defaults`.
-      # If it is, try to resolve by checking if value is callable.
-      # Otherwise returns the default value of that column.
-      if self.class.default_values.key?(name.to_sym)
-        value = self.class.default_values[name.to_sym]
-
-        if value.respond_to?(:call)
-          callable = value.is_a?(Proc) ? value : value.method(:call)
-          value = callable.arity == 1 ? value.call(self) : value.call
-        end
-      else
-        column_info = self.class.columns_hash[name.to_s]
-        value = ActiveRecord::Type.lookup(column_info.type).cast(column_info.default) if column_info
-      end
-
-      value
+      Defaults.resolve_default_value(self.class, self, name)
     end
 
     private def set_default_attributes
