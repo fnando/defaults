@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    defaults (1.0.1)
+    defaults (2.0.0)
       activerecord (>= 5.0.0)
 
 GEM
@@ -69,4 +69,4 @@ DEPENDENCIES
   sqlite3
 
 BUNDLED WITH
-   1.17.2
+   1.17.3
