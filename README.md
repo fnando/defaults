@@ -1,6 +1,6 @@
 # Defaults
 
-[![Travis-CI](https://travis-ci.org/fnando/defaults.png)](https://travis-ci.org/fnando/defaults)
+[![Travis-CI](https://travis-ci.org/fnando/defaults.svg)](https://travis-ci.org/fnando/defaults)
 [![Code Climate](https://codeclimate.com/github/fnando/defaults/badges/gpa.svg)](https://codeclimate.com/github/fnando/defaults)
 [![Test Coverage](https://codeclimate.com/github/fnando/defaults/badges/coverage.svg)](https://codeclimate.com/github/fnando/defaults/coverage)
 [![Gem](https://img.shields.io/gem/v/defaults.svg)](https://rubygems.org/gems/defaults)
@@ -8,14 +8,27 @@
 
 ## Instalation
 
-Just run `gem install defaults`.
+Add this line to your application's Gemfile:
+
+```ruby
+gem "defaults"
+```
+
+And then execute:
+
+    $ bundle
+
+Or install it yourself as:
+
+    $ gem install defaults
+
 
 ## Usage
 
 Here are the rules:
 
 1. Assigned attributes have precedence over default values
-2. Default values have precedence over database defaults
+2. Default values have precedence over database defaults.
 
 Add the method call `defaults` to your model.
 
