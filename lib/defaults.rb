@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Defaults
   require "defaults/version"
 
@@ -8,7 +10,10 @@ module Defaults
 
   def self.default_value_for_column(model, attribute)
     column_info = model.columns_hash[attribute.to_s]
-    ActiveRecord::Type.lookup(column_info.type).cast(column_info.default) if column_info
+
+    return unless column_info
+
+    ActiveRecord::Type.lookup(column_info.type).cast(column_info.default)
   end
 
   def self.default_value(model, record, attribute)
@@ -40,7 +45,9 @@ module Defaults
 
   module ClassMethods
     def defaults(attrs)
-      raise ArgumentError, "Hash expected; #{attrs.class} given." unless attrs.is_a?(Hash)
+      unless attrs.is_a?(Hash)
+        raise ArgumentError, "Hash expected; #{attrs.class} given."
+      end
 
       include InstanceMethods
 
@@ -69,4 +76,4 @@ module Defaults
   end
 end
 
-ActiveRecord::Base.send(:include, Defaults)
+ActiveRecord::Base.include Defaults

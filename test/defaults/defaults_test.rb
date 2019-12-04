@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "test_helper"
 
 class Donut < ActiveRecord::Base
@@ -47,7 +49,7 @@ class DefaultsTest < Minitest::Test
     assert_equal "Dunkin Donuts", new_donut.maker
     assert_equal "Donut", new_donut.class_name
     assert_equal 5, new_donut.quantity
-    assert_match /^delicious-donut-\d{4}$/, new_donut.slug
+    assert_match(/^delicious-donut-\d{4}$/, new_donut.slug)
   end
 
   test "sets default values only when have blank attributes" do
@@ -108,8 +110,8 @@ class DefaultsTest < Minitest::Test
 
   test "considers arity=1 of callable (class)" do
     quantity_class = Class.new do
-      def self.record
-        @record
+      class << self
+        attr_reader :record
       end
 
       def self.call(record)
@@ -139,16 +141,14 @@ class DefaultsTest < Minitest::Test
     assert_equal 42, donut.default_for(:quantity)
   end
 
-  private
-
-  def model(&block)
+  private def model(&block)
     Class.new(ActiveRecord::Base) do
       self.table_name = :donuts
       instance_eval(&block)
     end
   end
 
-  def create_donut(options = {}, model = Donut)
+  private def create_donut(options = {}, model = Donut)
     model.create({
       flavor: "vanilla",
       name: "Vanilla Sky",
