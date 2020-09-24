@@ -1,23 +1,22 @@
 ---
-
 language: ruby
 script: bundle exec rake
 sudo: false
 cache: bundler
 rvm:
+  - 2.7.1
   - 2.6.5
-  - 2.5.7
 gemfile:
   - gemfiles/6_0.gemfile
   - gemfiles/5_2.gemfile
-  - gemfiles/5_1.gemfile
-  - gemfiles/5_0.gemfile
 notifications:
   email: false
 before_install:
   - gem install bundler
 before_script:
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - "curl -L
+    https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
+    > ./cc-test-reporter"
   - chmod +x ./cc-test-reporter
   - "./cc-test-reporter before-build"
 after_script:
