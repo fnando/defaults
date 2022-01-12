@@ -1,7 +1,6 @@
 # Defaults
 
 [![Tests](https://github.com/fnando/defaults/workflows/ruby-tests/badge.svg)](https://github.com/fnando/defaults)
-[![Code Climate](https://codeclimate.com/github/fnando/defaults/badges/gpa.svg)](https://codeclimate.com/github/fnando/defaults)
 [![Gem](https://img.shields.io/gem/v/defaults.svg)](https://rubygems.org/gems/defaults)
 [![Gem](https://img.shields.io/gem/dt/defaults.svg)](https://rubygems.org/gems/defaults)
 
@@ -32,7 +31,8 @@ Add the method call `defaults` to your model.
 
 ```ruby
 class Page < ActiveRecord::Base
-  defaults title: "New page", body: "Put your text here"
+  defaults title: "New page",
+           body: "Put your text here"
 end
 ```
 
@@ -69,7 +69,10 @@ end
 You can override the default attributes as follow:
 
 ```ruby
-Page.default_values = {title: "Here's your new page", body: "Write your page text"}
+Page.default_values = {
+  title: "Here's your new page",
+  body: "Write your page text"
+}
 ```
 
 ## Maintainer
@@ -78,18 +81,18 @@ Page.default_values = {title: "Here's your new page", body: "Write your page tex
 
 ## Contributors
 
-- https://github.com/fnando/defaults/contributors
+- <https://github.com/fnando/defaults/contributors>
 
 ## Contributing
 
 For more details about how to contribute, please read
-https://github.com/fnando/defaults/blob/main/CONTRIBUTING.md.
+<https://github.com/fnando/defaults/blob/main/CONTRIBUTING.md>.
 
 ## License
 
 The gem is available as open source under the terms of the
 [MIT License](https://opensource.org/licenses/MIT). A copy of the license can be
-found at https://github.com/fnando/defaults/blob/main/LICENSE.md.
+found at <https://github.com/fnando/defaults/blob/main/LICENSE.md>.
 
 ## Code of Conduct
 
