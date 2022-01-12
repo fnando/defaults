@@ -7,11 +7,13 @@ Gem::Specification.new do |s|
   s.version     = Defaults::Version::STRING
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Nando Vieira"]
-  s.email       = ["fnando.vieira@gmail.com"]
+  s.email       = ["me@fnando.com"]
   s.homepage    = "http://rubygems.org/gems/defaults"
   s.summary     = "Set default values for ActiveRecord attributes"
   s.description = s.summary
   s.licenses    = ["MIT"]
+  s.required_ruby_version = ">= 2.7"
+  s.metadata["rubygems_mfa_required"] = "true"
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
@@ -20,7 +22,8 @@ Gem::Specification.new do |s|
                     .map {|file| File.basename(file) }
   s.require_paths = ["lib"]
 
-  s.add_dependency "activerecord", ">= 5.0.0"
+  s.add_dependency "activerecord"
+  s.add_development_dependency "minitest"
   s.add_development_dependency "minitest-utils"
   s.add_development_dependency "pry-meta"
   s.add_development_dependency "rake"

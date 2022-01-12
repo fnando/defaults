@@ -35,7 +35,8 @@ class DefaultsTest < Minitest::Test
   end
 
   test "has precedence over database defaults" do
-    assert ActiveRecord::Type.lookup(:boolean).cast(Donut.columns_hash["available"].default)
+    assert ActiveRecord::Type.lookup(:boolean)
+                             .cast(Donut.columns_hash["available"].default)
     refute new_donut.available?
   end
 

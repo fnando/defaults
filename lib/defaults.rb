@@ -66,7 +66,7 @@ module Defaults
     private def set_default_attributes
       return unless new_record?
 
-      self.class.default_values.keys.each do |name|
+      self.class.default_values.each_key do |name|
         value = read_attribute(name) if changes[name]
         value = default_for(name) if value.blank?
 

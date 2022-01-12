@@ -1,8 +1,7 @@
 # Defaults
 
-[![Travis-CI](https://travis-ci.org/fnando/defaults.svg)](https://travis-ci.org/fnando/defaults)
+[![Tests](https://github.com/fnando/defaults/workflows/ruby-tests/badge.svg)](https://github.com/fnando/defaults)
 [![Code Climate](https://codeclimate.com/github/fnando/defaults/badges/gpa.svg)](https://codeclimate.com/github/fnando/defaults)
-[![Test Coverage](https://codeclimate.com/github/fnando/defaults/badges/coverage.svg)](https://codeclimate.com/github/fnando/defaults/coverage)
 [![Gem](https://img.shields.io/gem/v/defaults.svg)](https://rubygems.org/gems/defaults)
 [![Gem](https://img.shields.io/gem/dt/defaults.svg)](https://rubygems.org/gems/defaults)
 
@@ -21,7 +20,6 @@ And then execute:
 Or install it yourself as:
 
     $ gem install defaults
-
 
 ## Usage
 
@@ -46,7 +44,8 @@ Retrieve the default attribute with the `default_for` instance method:
 @page.default_for(:title)
 ```
 
-You can pass callables (any objects that respond to `.call()` or `.call(record)`) as attribute:
+You can pass callables (any objects that respond to `.call()` or
+`.call(record)`) as attribute:
 
 ```ruby
 class Expiration
@@ -75,27 +74,25 @@ Page.default_values = {title: "Here's your new page", body: "Write your page tex
 
 ## Maintainer
 
-Nando Vieira - http://nandovieira.com
+- [Nando Vieira](https://github.com/fnando)
+
+## Contributors
+
+- https://github.com/fnando/defaults/contributors
+
+## Contributing
+
+For more details about how to contribute, please read
+https://github.com/fnando/defaults/blob/main/CONTRIBUTING.md.
 
 ## License
 
-(The MIT License)
+The gem is available as open source under the terms of the
+[MIT License](https://opensource.org/licenses/MIT). A copy of the license can be
+found at https://github.com/fnando/defaults/blob/main/LICENSE.md.
 
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-'Software'), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
+## Code of Conduct
 
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+Everyone interacting in the defaults project's codebases, issue trackers, chat
+rooms and mailing lists is expected to follow the
+[code of conduct](https://github.com/fnando/defaults/blob/main/CODE_OF_CONDUCT.md).
